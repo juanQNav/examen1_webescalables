@@ -1,0 +1,16 @@
+.card{
+    width: 350px;
+    height: 700px;  
+    margin: 20px;
+}
+
+img{
+    height: 40%;
+}
+.selected{
+    background-color: beige;
+}
+
+button{
+    margin: 5pxy;
+}
