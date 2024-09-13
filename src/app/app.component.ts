@@ -17,6 +17,7 @@ import { SortCardsComponent } from "./components/sort-cards/sort-cards.component
 export class AppComponent {
   form: FormGroup;
   isFormSubmitted: boolean = false;
+  editingShow: Show | null = null;
 
   public shows: Show[] = [
       {
@@ -176,9 +177,18 @@ export class AppComponent {
   public deleteElement(name: string): void{
     this.shows = this.shows.filter(show => show.name != name)
   }
-
-  public createElement(show: Show): void{
+  public createElement(show: Show): void {
+    if (this.editingShow) {
+      // Edit existing show
+      const index = this.shows.findIndex(s => s.name === this.editingShow?.name);
+      if (index !== -1) {
+        this.shows[index] = show;
+      }
+      this.editingShow = null;
+    } else {
+      // Add new show
       this.shows.push(show);
+    }
   }
 
   public sortByAlphabetic(): void {
@@ -188,4 +198,10 @@ export class AppComponent {
   public reverseList(): void {
     this.shows.reverse();
   }
+  public editElement(show: Show): void {
+      this.editingShow = show;
+  }
+  public updateElement(show: Show): void {
+    this.createElement(show);
+  }
 }

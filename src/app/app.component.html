@@ -17,11 +17,16 @@
       Datos incompletos
     </div>
   </form>  -->
-  <app-show-form (createElement)="createElement($event)"></app-show-form>
+  <app-show-form [show]="editingShow" (createElement)="createElement($event)"></app-show-form>
 
   <app-sort-cards (sortByAlphabetic)="sortByAlphabetic()" (reverseList)="reverseList()"></app-sort-cards>
 
   <div class="div container d-flex">
-    <app-show-card *ngFor="let show of shows" [show] = "show" (deleteCard) = "deleteElement($event)"></app-show-card>
+    <app-show-card 
+    *ngFor="let show of shows" 
+    [show]="show" 
+    (deleteCard)="deleteElement($event)" 
+    (editCard)="editElement($event)">
+  </app-show-card>
   </div>
 </div>

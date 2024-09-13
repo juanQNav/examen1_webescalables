@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Show } from '../../interfaces/show.interface';
 
@@ -11,6 +11,8 @@ import { Show } from '../../interfaces/show.interface';
   styleUrl: './show-form.component.css'
 })
 export class ShowFormComponent {
+  @Input() 
+  public show: Show | null = null;
   @Output()
   public createElement: EventEmitter<Show> = new EventEmitter();
 
